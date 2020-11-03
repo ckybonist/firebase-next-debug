@@ -12,6 +12,7 @@ const clientCredentials = {
   storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  measurementId: 'G-FDLCNQ4K5T'
 }
 
 // Check that `window` is in scope for the analytics module!
