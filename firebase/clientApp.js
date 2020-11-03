@@ -16,9 +16,11 @@ const clientCredentials = {
 
 // Check that `window` is in scope for the analytics module!
 if (typeof window !== 'undefined' && !firebase.apps.length) {
-  firebase.initializeApp(clientCredentials)
-  // To enable analytics. https://firebase.google.com/docs/analytics/get-started
-  if ('measurementId' in clientCredentials) firebase.analytics()
+  if (clientCredentials.apiKey) {
+    firebase.initializeApp(clientCredentials)
+    // To enable analytics. https://firebase.google.com/docs/analytics/get-started
+    if ('measurementId' in clientCredentials) firebase.analytics()
+  }
 }
 
 export default firebase
