@@ -3,6 +3,22 @@ import { useEffect } from 'react'
 import { useUser } from '../context/userContext'
 import firebase from '../firebase/clientApp'
 
+const handleShareClick = ({ title, text, url }) => async () => {
+  if (navigator.share) {
+    try {
+      await navigator.share({
+        title,
+        text,
+        url
+      })
+    } catch (error) {
+      console.error('[handled]', error);
+    }
+  } else {
+    console.warn('System share is not supported!');
+  }
+}
+
 export default function Home() {
   // Our custom hook to get context values
   const { loadingUser, user } = useUser()
@@ -26,6 +42,11 @@ export default function Home() {
       <main>
         <h1 className="title">Next.js w/ Firebase Client-Side</h1>
         <p className="description">Fill in your credentials to get started</p>
+        <button onClick={handleShareClick({
+          title: 'Vercel with Firebase',
+          text: 'try system share!',
+          url: 'https://icook.tw'
+        })}>Open System Share</button>
       </main>
 
       <style jsx>{`
