@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useUser } from '../context/userContext'
 import firebase from '../firebase/clientApp'
 
@@ -22,6 +22,17 @@ const handleShareClick = ({ title, text, url }) => async () => {
 export default function Home() {
   // Our custom hook to get context values
   const { loadingUser, user } = useUser()
+  const [error, setError] = useState('');
+
+  const createCustomEvent = () => {
+    try {
+      const e = document.createEvent('CustomEvent');
+      e.initCustomEvent('customType', true, true, 'foo');
+    } catch (error) {
+      setError(error.toString());
+    }
+  };
+
 
   useEffect(() => {
     if (!loadingUser) {
@@ -47,6 +58,9 @@ export default function Home() {
           text: 'try system share!',
           url: 'https://icook.tw'
         })}>Open System Share</button>
+        <br />
+        <button onClick={createCustomEvent}>Create Event</button>
+        <p style={{ color: 'red' }}>{error}</p>
       </main>
 
       <style jsx>{`
