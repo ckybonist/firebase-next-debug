@@ -26,7 +26,7 @@ export default function App({ Component, pageProps }) {
 
   return (
     <UserProvider>
-      {frame ? (
+      {frame && frame !== 'yt' ? (
         <iframe
           style={{
             position: 'absolute',
@@ -36,9 +36,13 @@ export default function App({ Component, pageProps }) {
           src={getFrameSrc(frame)}
           width="360"
           height="180"
+          frameborder="0"
           allowFullScreen
         >
         </iframe>) : null}
+      {frame === 'yt' && (
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/RUQl6YcMalg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      )}
       <Component {...pageProps} />
     </UserProvider>
   )
