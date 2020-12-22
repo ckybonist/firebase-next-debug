@@ -1,7 +1,5 @@
 import Head from 'next/head'
-import { useEffect, useState } from 'react'
-import { useUser } from '../context/userContext'
-import firebase from '../firebase/clientApp'
+import { useState } from 'react'
 
 const handleShareClick = ({ title, text, url }) => async () => {
   if (navigator.share) {
@@ -21,7 +19,7 @@ const handleShareClick = ({ title, text, url }) => async () => {
 
 export default function Home() {
   // Our custom hook to get context values
-  const { loadingUser, user } = useUser()
+  // const { loadingUser, user } = useUser()
   const [error, setError] = useState('');
 
   const createCustomEvent = () => {
@@ -32,16 +30,6 @@ export default function Home() {
       setError(error.toString());
     }
   };
-
-
-  useEffect(() => {
-    if (!loadingUser) {
-      // You know that the user is loaded: either logged in or out!
-      console.log(user)
-    }
-    // You also have your firebase app initialized
-    console.log(firebase)
-  }, [loadingUser, user])
 
   return (
     <div className="container">

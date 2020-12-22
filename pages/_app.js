@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router'
-import UserProvider from '../context/userContext'
 
 const getFrameSrc = (frame) => {
   if (frame === 'true') {
@@ -25,7 +24,7 @@ export default function App({ Component, pageProps }) {
 
 
   return (
-    <UserProvider>
+    <div>
       {frame && frame !== 'yt' ? (
         <iframe
           style={{
@@ -44,6 +43,6 @@ export default function App({ Component, pageProps }) {
         <iframe width="560" height="315" src="https://www.youtube.com/embed/RUQl6YcMalg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       )}
       <Component {...pageProps} />
-    </UserProvider>
+    </div>
   )
 }
